@@ -32,10 +32,10 @@
 
 package com.adobe.utils
 {
+	import com.adobe.utils.StringUtil;
+	
 	import flexunit.framework.TestCase;
 	import flexunit.framework.TestSuite;
-	
-	import com.adobe.utils.StringUtil;
 
 	public class StringUtilTest extends TestCase
 	{	
@@ -305,6 +305,13 @@ package com.adobe.utils
 			assertFalse("StringUtil.stringHasValue(null) == false", StringUtil.stringHasValue(null));
 			assertFalse("StringUtil.stringHasValue(\"\") == false", StringUtil.stringHasValue(""));
 			assertTrue("StringUtil.stringHasValue(\"XXX\") == true", StringUtil.stringHasValue("XXX"));
+		}
+		
+		public function testSubstitute():void {
+			assertEquals(StringUtil.substitute("", 1, 2, 3), "");
+			assertEquals(StringUtil.substitute("none"), "none");
+			assertEquals(StringUtil.substitute("none", 1, 2, 3), "none");
+			assertEquals(StringUtil.substitute("This {0} {1} {2} string.", "is", "a", "test"), "This is a test string.");
 		}
 	}
 }
