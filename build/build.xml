@@ -133,4 +133,49 @@
 		<echo message="Documentation has been created in ${docs.dir}" />
 	</target>
 
+	<!-- ======================================= -->
+	<!-- Compile, Test and Release -->
+	<!-- ======================================= -->
+	
+	<target name="install" description="Compile, test and release the library">
+		<antcall target="compile" />
+		<antcall target="test" />
+		<antcall target="release" />
+	</target>
+	
+	<target name="release" description="Create the release package" >
+		<!-- clean any previous release dir -->
+		<delete dir="${release.dir}" />
+		<mkdir dir="${release.dir}" />
+		
+		<!-- copy stuff to staging folder -->
+		<copy todir="${release.dir}/src">
+			<fileset dir="${src.dir}" />
+		</copy>
+		<copy todir="${release.dir}/tests/src">
+			<fileset dir="${test.src.dir}" />
+		</copy>
+		<copy todir="${release.dir}/examples">
+			<fileset dir="${basedir}/examples" />
+		</copy>
+		<copy todir="${release.dir}/docs">
+			<fileset dir="${docs.dir}" />
+		</copy>
+		<copy todir="${release.dir}/lib">
+			<fileset dir="${bin.dir}" />
+		</copy>
+		<copy todir="${release.dir}">
+			<fileset file="license.txt" />
+			<fileset file="README.md" />
+		</copy>
+			
+		<!-- package the ZIP file -->
+		<zip destfile="${library.name}-${build.version}.zip">
+			<fileset dir="${release.dir}" defaultexcludes="false"/>
+		</zip>
+		
+		<!-- clean up staging -->
+		<delete dir="${release.dir}" />
+	</target>
+	
 </project>

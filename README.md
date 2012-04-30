@@ -1,4 +1,3 @@
-
 as3corelib
 ==========
 
@@ -7,7 +6,9 @@ An ActionScript 3 Library that contains a number of classes and utilities for wo
 Why Forked?
 -----------
 
-The projects was forked from the original project at https://github.com/mikechambers/as3corelib because the original project is now dormant and has not been maintained for over an year now. Thus, this fork of mine which aims to fix all reported issues and keep upgrading the library with reported issues/enhancements/ideas.
+The project home page can be found at https://github.com/sangupta/as3corelib. Note that this project is a fork of the original project at https://github.com/mikechambers/as3corelib.
+
+The projects was forked from the original project at https://github.com/mikechambers/as3corelib because the original project is now dormant and has not been maintained for over an year now. Thus, this fork aims to provide fixes for reported issues and keep upgrading for enhancements/ideas.
 
 License
 -------

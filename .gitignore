@@ -23,3 +23,7 @@ docs/*
 #Java Noise
 *.class
 
+# Project specific
+release/*
+*.zip
+
