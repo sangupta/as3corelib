@@ -10,6 +10,16 @@ The project home page can be found at https://github.com/sangupta/as3corelib. No
 
 The projects was forked from the original project at https://github.com/mikechambers/as3corelib because the original project is now dormant and has not been maintained for over an year now. Thus, this fork aims to provide fixes for reported issues and keep upgrading for enhancements/ideas.
 
+Contributors
+------------
+
+The project includes contributions from various sources, including,
+
+- Original authors of the library at https://github.com/mikechambers/as3corelib/graphs/contributors
+- Users who provided fixes as pull requests. Refer to https://github.com/mikechambers/as3corelib/issues for more details
+- Users who provided fixes as code attachments. Refer to https://github.com/mikechambers/as3corelib/issues for more details
+- Lastly, me who is trying to gather all these fixes in one place to revive the library
+
 License
 -------
 
