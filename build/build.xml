@@ -5,7 +5,7 @@
 	<!--  Configuration -->
 	<!-- ============================== -->
 
-	<property environment="env" />
+	<property name="env.FLEX_HOME" value="E:/FlexSDK/4.1.0.16076A_AIR_2.5"/>
 	
 	<fail unless="env.FLEX_HOME" message="FLEX_HOME needs to be defined as an environment variable or in the Ant build." />
 
@@ -70,7 +70,7 @@
 			</library-path>
 
 			<!-- Sets java.awt.headless=true so font compilation works in headless environments -->
-			<compiler.headless-server>true</compiler.headless-server>
+			<compiler.headless-server>false</compiler.headless-server>
 		</mxmlc>
 
 		<echo message="The ${test.application.name}.swf test runner has been created in ${test.bin.dir}" />
@@ -78,9 +78,17 @@
 	
 	<target name="runTestsAndReport" depends="init" description="Launches the test runner, captures results, generates test report artifacts.">
 		<!-- Run FlexUnit Ant Task to execute the unit tests and capture reporting data -->
-		<taskdef resource="flexUnitTasks.tasks" classpath="${build.libs.dir}/flexUnitTasks-4.0.0.jar" />
-		<flexunit swf="${test.bin.dir}/${test.application.name}.swf" toDir="${report.dir}"
-			haltonfailure="false" verbose="false" localTrusted="false" player="air" />
+		<taskdef resource="flexUnitTasks.tasks" classpath="${build.libs.dir}/${flexunit.jar}" />
+		
+		<flexunit 	swf="${test.bin.dir}/${test.application.name}.swf" 
+					toDir="${report.dir}" 
+					haltonfailure="false" 
+					verbose="false" 
+					localTrusted="false" 
+					player="air" 
+					workingdir="${test.bin.dir}" >
+			
+		</flexunit>
 
 		<!-- Generate html JUnit-style reports based on test results -->
 		<junitreport todir="${report.dir}">
