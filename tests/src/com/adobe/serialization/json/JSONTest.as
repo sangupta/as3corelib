@@ -52,7 +52,7 @@ package com.adobe.serialization.json
 			
 			try
 			{
-				var o:* = JSON.decode( jsonString, strict );
+				var o:* = com.adobe.serialization.json.JSON.decode( jsonString, strict );
 				fail( "Expecting parse error but one was not thrown" );
 			}
 			catch ( e:JSONParseError )
@@ -73,28 +73,28 @@ package com.adobe.serialization.json
 		 */
 		public function testDecodeTrue():void
 		{
-			var o:* = JSON.decode( "true" ) as Boolean;
+			var o:* = com.adobe.serialization.json.JSON.decode( "true" ) as Boolean;
 			assertTrue( "Expected decoded true", o );
 		}
 		
 		public function testDecodeFalse():void
 		{
-			var o:* = JSON.decode( "false" ) as Boolean;
+			var o:* = com.adobe.serialization.json.JSON.decode( "false" ) as Boolean;
 			assertFalse( "Expected decoded false", o );
 		}
 		
 		public function testDecodeNull():void
 		{
-			var o:* = JSON.decode( "null " );
+			var o:* = com.adobe.serialization.json.JSON.decode( "null " );
 			assertNull( "Expected decoded null", o );
 		}
 		
 		public function testDecodeString():void
 		{
 			var string:String = "this \"is\" \t a \/ string \b \f \r \h \\ \n with \' ch\\u0061rs that should be { } http://escaped.com/";
-			assertEquals( string, JSON.decode( JSON.encode( string ) ) );
+			assertEquals( string, com.adobe.serialization.json.JSON.decode( com.adobe.serialization.json.JSON.encode( string ) ) );
 			
-			var o:String = JSON.decode( "\"http:\/\/digg.com\/security\/Simple_Digg_Hack\"" ) as String;
+			var o:String = com.adobe.serialization.json.JSON.decode( "\"http:\/\/digg.com\/security\/Simple_Digg_Hack\"" ) as String;
 			assertEquals( "String not decoded correctly", "http://digg.com/security/Simple_Digg_Hack", o );
 			
 			expectParseError( "\"unterminated string" );
@@ -112,7 +112,7 @@ package com.adobe.serialization.json
 			expectParseError( "\"\\u123\"" );
 			
 			// Unicode decodes correctly
-			assertEquals( "a", JSON.decode( "\"\\u0061\"" ) );
+			assertEquals( "a", com.adobe.serialization.json.JSON.decode( "\"\\u0061\"" ) );
 		}
 		
 		// Issue #104 - http://code.google.com/p/as3corelib/issues/detail?id=104
@@ -132,13 +132,13 @@ package com.adobe.serialization.json
 			{
 				var string:String = "control char " + i + ": " + String.fromCharCode( i ) + ""
 				assertEquals( string,
-							JSON.decode( "\"" + string + "\"", false ) );
+					com.adobe.serialization.json.JSON.decode( "\"" + string + "\"", false ) );
 			}
 		}
 		
 		public function testDecodeZero():void
 		{
-			var n:Number = JSON.decode( "0" ) as Number;
+			var n:Number = com.adobe.serialization.json.JSON.decode( "0" ) as Number;
 			assertEquals( n, 0 );
 		}
 		
@@ -149,25 +149,25 @@ package com.adobe.serialization.json
 		
 		public function testDecodePositiveInt():void
 		{
-			var n:int = JSON.decode( "123871" ) as int;
+			var n:int = com.adobe.serialization.json.JSON.decode( "123871" ) as int;
 			assertEquals( n, 123871 );
 		}
 		
 		public function testDecodeNegativeInt():void
 		{
-			var n:int = JSON.decode( "-97123" ) as int;
+			var n:int = com.adobe.serialization.json.JSON.decode( "-97123" ) as int;
 			assertEquals( n, -97123 );
 		}
 		
 		public function testDecodePositiveFloat():void
 		{
-			var n:Number = JSON.decode( "12.987324" ) as Number;
+			var n:Number = com.adobe.serialization.json.JSON.decode( "12.987324" ) as Number;
 			assertEquals( n, 12.987324 );
 		}
 		
 		public function testDecodeNegativeFloat():void
 		{
-			var n:Number = JSON.decode( "-1298.7324" ) as Number;
+			var n:Number = com.adobe.serialization.json.JSON.decode( "-1298.7324" ) as Number;
 			assertEquals( n, -1298.7324 );
 		}
 		
@@ -183,32 +183,32 @@ package com.adobe.serialization.json
 		
 		public function testDecodeScientificRegularExponent():void
 		{
-			var n:Number = JSON.decode( "6.02e2" ) as Number;
+			var n:Number = com.adobe.serialization.json.JSON.decode( "6.02e2" ) as Number;
 			assertEquals( n, 602 );
 			
-			n = JSON.decode( "-2e10" );			
+			n = com.adobe.serialization.json.JSON.decode( "-2e10" );			
 			assertEquals( n, -20000000000 ); 
 			assertEquals( n, -2 * Math.pow( 10, 10 ) );
 		}
 		
 		public function testDecodeScientificPositiveExponent():void
 		{
-			var n:Number = JSON.decode( "2E+9" ) as Number;
+			var n:Number = com.adobe.serialization.json.JSON.decode( "2E+9" ) as Number;
 			assertEquals( n, 2 * Math.pow( 10, 9 ) );
 			
-			n = JSON.decode( "-2.2E+23" ) as Number;
+			n = com.adobe.serialization.json.JSON.decode( "-2.2E+23" ) as Number;
 			assertEquals( n, -2.2 * Math.pow( 10, 23 ) );
 		}
 		
 		public function testDecodeScientificNegativeExponent():void
 		{
-			var n:Number = JSON.decode( "6.02e-23" ) as Number;
+			var n:Number = com.adobe.serialization.json.JSON.decode( "6.02e-23" ) as Number;
 			assertEquals( n, 6.02 * Math.pow( 10, -23 ) ); 
 			
-			n = JSON.decode( "-4e-9" ) as Number;
+			n = com.adobe.serialization.json.JSON.decode( "-4e-9" ) as Number;
 			assertEquals( n, -4 * Math.pow( 10, -9 ) ); 
 			
-			n = JSON.decode( "0E-2" ) as Number;
+			n = com.adobe.serialization.json.JSON.decode( "0E-2" ) as Number;
 			assertEquals( n, 0 );
 		}
 		
@@ -222,7 +222,7 @@ package com.adobe.serialization.json
 		 */
 		public function testDecodeHex():void
 		{
-			var n:Number = JSON.decode( "0xFF0033", false );
+			var n:Number = com.adobe.serialization.json.JSON.decode( "0xFF0033", false );
 			assertEquals( 0xFF0033, n );
 			
 			// Verify invalid hex format throws error
@@ -241,10 +241,10 @@ package com.adobe.serialization.json
 		 */
 		public function testDecodeNaN():void
 		{
-			var n:Number = JSON.decode( "NaN", false ) as Number;
+			var n:Number = com.adobe.serialization.json.JSON.decode( "NaN", false ) as Number;
 			assertTrue( isNaN( n ) );
 			
-			var o:Object = JSON.decode( "{ \"num\": NaN }", false );
+			var o:Object = com.adobe.serialization.json.JSON.decode( "{ \"num\": NaN }", false );
 			assertNotNull( o );
 			assertTrue( isNaN( o.num ) );
 			
@@ -255,7 +255,7 @@ package com.adobe.serialization.json
 		
 		public function testDecodeObject():void
 		{
-			var o:* = JSON.decode( " { \"test\": true, \"test2\": -12356732.12 } " ) as Object;
+			var o:* = com.adobe.serialization.json.JSON.decode( " { \"test\": true, \"test2\": -12356732.12 } " ) as Object;
 			assertNotNull( o );
 			
 			assertEquals( "Expected decoded object.test = true", true, o.test );
@@ -268,12 +268,12 @@ package com.adobe.serialization.json
 		 */
 		public function testDecodeObjectWithTrailingComma():void
 		{
-			var o:Object = JSON.decode( "{\"p1\":true,\"p2\":false,}", false );
+			var o:Object = com.adobe.serialization.json.JSON.decode( "{\"p1\":true,\"p2\":false,}", false );
 			assertNotNull( o );
 			assertTrue( o.p1 );
 			assertFalse( o.p2 );
 			
-			o = JSON.decode( "{,}", false );
+			o = com.adobe.serialization.json.JSON.decode( "{,}", false );
 			assertNotNull( o );
 			
 			// Verify strict mode throws error with trailing comma
@@ -291,7 +291,7 @@ package com.adobe.serialization.json
 		
 		public function testDecodeArray():void
 		{
-			var o:* = JSON.decode( " [ null, true, false, 100, -100, \"test\", { \"foo\": \"bar\" } ] "  ) as Array;
+			var o:* = com.adobe.serialization.json.JSON.decode( " [ null, true, false, 100, -100, \"test\", { \"foo\": \"bar\" } ] "  ) as Array;
 			assertNull( "Expected decoded array[0] == null", o[0] );
 			assertTrue( "Expected decoded array[1] == true", o[1] );
 			assertFalse( "Expected decoded array[2] == false", o[2] );
@@ -303,7 +303,7 @@ package com.adobe.serialization.json
 		
 		public function testDecodeArrayWithNewlines():void
 		{
-			var o:Array = JSON.decode( "\n [ \nnull, \n \r \t \r true \n ] \r \t \r \n" ) as Array;
+			var o:Array = com.adobe.serialization.json.JSON.decode( "\n [ \nnull, \n \r \t \r true \n ] \r \t \r \n" ) as Array;
 			
 			assertNull( "Expected decoded with newlines array[0] == null", o[0] );
 			assertTrue( "Expected decoded with newlines array[1] == true", o[1] );
@@ -315,11 +315,11 @@ package com.adobe.serialization.json
 		 */
 		public function testDecodeArrayWithTrailingComma():void
 		{
-			var o:Array = JSON.decode( "[0,1,]", false ) as Array;
+			var o:Array = com.adobe.serialization.json.JSON.decode( "[0,1,]", false ) as Array;
 			assertEquals( 0, o[0] );
 			assertEquals( 1, o[1] );
 			
-			o = JSON.decode( "[,]", false ) as Array;
+			o = com.adobe.serialization.json.JSON.decode( "[,]", false ) as Array;
 			assertNotNull( o );
 			assertEquals( 0, o.length );
 			
@@ -342,10 +342,10 @@ package com.adobe.serialization.json
 			expectParseError( "/*/" );
 			expectParseError( "//" );
 			
-			var n:Number = JSON.decode( "// this is a number\n12" );
+			var n:Number = com.adobe.serialization.json.JSON.decode( "// this is a number\n12" );
 			assertEquals( 12, n );
 			
-			n = JSON.decode( "/* \n\n multiine com//ment *///\n14" );
+			n = com.adobe.serialization.json.JSON.decode( "/* \n\n multiine com//ment *///\n14" );
 			assertEquals( 14, n )	
 		}
 		
@@ -354,7 +354,7 @@ package com.adobe.serialization.json
 			var jsonString:String = "   // test comment"
 							+ "\n   // test comment line 2"
 							+ "\nfalse";
-			var o:* = JSON.decode( jsonString );
+			var o:* = com.adobe.serialization.json.JSON.decode( jsonString );
 			assertEquals( false, o );
 		}
 		
@@ -368,24 +368,24 @@ package com.adobe.serialization.json
 			var n:Number;
 			var nbsp:String = String.fromCharCode( 160 ); // non-breaking space
 			
-			n = JSON.decode( " 1 " );
+			n = com.adobe.serialization.json.JSON.decode( " 1 " );
 			assertEquals( 1, n );
 			
-			n = JSON.decode( "\t2\t" );
+			n = com.adobe.serialization.json.JSON.decode( "\t2\t" );
 			assertEquals( 2, n );
 			
-			n = JSON.decode( "\r3\r" );
+			n = com.adobe.serialization.json.JSON.decode( "\r3\r" );
 			assertEquals( 3, n );
 			
-			n = JSON.decode( "\n4\n" );
+			n = com.adobe.serialization.json.JSON.decode( "\n4\n" );
 			assertEquals( 4, n );
 			
 			// Verify combined before/after spacing
-			n = JSON.decode( "\t \n\n\r \r\n\t 100 \r\n\t\r\r\r\n  \n" ) as Number
+			n = com.adobe.serialization.json.JSON.decode( "\t \n\n\r \r\n\t 100 \r\n\t\r\r\r\n  \n" ) as Number
 			assertEquals( 100, n );
 			
 			// In non-strict mode, we should also accept non breaking space
-			n = JSON.decode( "\t \n" 
+			n = com.adobe.serialization.json.JSON.decode( "\t \n" 
 							+ nbsp 
 							+ "\n\r \r\n\t 100 \r\n\t\r\r\r\n" 
 							+ nbsp 
@@ -404,13 +404,13 @@ package com.adobe.serialization.json
 			expectParseError( "true Z" );
 			
 			// non-strict mode will not throw errors
-			var a:Array = JSON.decode( "[ 1 ] true", false ) as Array;
+			var a:Array = com.adobe.serialization.json.JSON.decode( "[ 1 ] true", false ) as Array;
 			assertEquals( 1, a[0] );
 			
-			var n:Number = JSON.decode( "1Z", false ) as Number;
+			var n:Number = com.adobe.serialization.json.JSON.decode( "1Z", false ) as Number;
 			assertEquals( 1, n );
 			
-			var b:Boolean = JSON.decode( "true Z", false ) as Boolean;
+			var b:Boolean = com.adobe.serialization.json.JSON.decode( "true Z", false ) as Boolean;
 			assertTrue( b );
 		}
 		
@@ -434,46 +434,46 @@ package com.adobe.serialization.json
 		
 		public function testEncodeTrue():void
 		{
-			var o:String = JSON.encode( true );
+			var o:String = com.adobe.serialization.json.JSON.encode( true );
 			assertEquals( "Expected encoded true", "true", o );
 		}
 		
 		public function testEncodeFalse():void
 		{
-			var o:String = JSON.encode( false );
+			var o:String = com.adobe.serialization.json.JSON.encode( false );
 			assertEquals( "Expected encoded false", "false", o );
 		}
 		
 		public function testEncodeNull():void
 		{
-			var o:String = JSON.encode( null );
+			var o:String = com.adobe.serialization.json.JSON.encode( null );
 			assertEquals( "Expected encoded null", "null", o );
 		}
 		
 		public function testEncodeString():void
 		{
-			var o:String = JSON.encode( "this is a \n \"string\"" );
+			var o:String = com.adobe.serialization.json.JSON.encode( "this is a \n \"string\"" );
 			assertEquals( "Expected encoded string", "\"this is a \\n \\\"string\\\"\"", o );
 			
-			o = JSON.encode( "myString" );
+			o = com.adobe.serialization.json.JSON.encode( "myString" );
 			assertEquals( "\"myString\"", o );
 		}
 		
 		public function testEncodeArrayEmpty():void
 		{
-			var o:String = JSON.encode( [] );
+			var o:String = com.adobe.serialization.json.JSON.encode( [] );
 			assertEquals( "Expected encoded []", "[]", o );
 		}
 		
 		public function testEncodeArray():void
 		{
-			var o:String = JSON.encode( [ true, false, -10, null, Number.NEGATIVE_INFINITY ] );
+			var o:String = com.adobe.serialization.json.JSON.encode( [ true, false, -10, null, Number.NEGATIVE_INFINITY ] );
 			assertTrue( "Expected encoded array", "[true,false,-10,null,null]", o );
 		}
 		
 		public function testEncodeObjectEmpty():void
 		{
-			var o:String = JSON.encode( {} );
+			var o:String = com.adobe.serialization.json.JSON.encode( {} );
 			assertTrue( "Expected encoded {}", "{}", o );
 		}
 		
@@ -492,12 +492,12 @@ package com.adobe.serialization.json
 			//assertTrue( "Expected encoded object", o == "{\"test1\":true,\"test 2\":false,\" test _3\":{\"foo\":\"bar\"}}" );
 			
 			var obj:Object = { foo: { foo2: { foo3: { foo4: "bar" } } } };
-			var s:String = JSON.encode( obj );
+			var s:String = com.adobe.serialization.json.JSON.encode( obj );
 			assertEquals( "Deeply nested", "{\"foo\":{\"foo2\":{\"foo3\":{\"foo4\":\"bar\"}}}}", s );
 			
 			obj = new Object();
 			obj[" prop with spaces "] = true;
-			s = JSON.encode( obj );
+			s = com.adobe.serialization.json.JSON.encode( obj );
 			assertEquals( "Prop with spaces", "{\" prop with spaces \":true}", s );
 		}
 		
@@ -506,14 +506,14 @@ package com.adobe.serialization.json
 			var customObject:SimpleClass = new SimpleClass();
 			customObject.transientVar = "Should not be encoded";
 			
-			var s:String = JSON.encode( customObject );
+			var s:String = com.adobe.serialization.json.JSON.encode( customObject );
 			
 			assertTrue( "Has length", s.length > 0 );
 			// Make sure the transient variable was not encoded
 			assertEquals( "Should not find transient var in string", -1,  s.indexOf( "\"transientVar\":\"Should not be encoded\"" ) );
 
 			// Decode the string so we can verify that it has the properties
-			var o:Object = JSON.decode( s );
+			var o:Object = com.adobe.serialization.json.JSON.decode( s );
 
 			assertNotNull( o );
 			assertNotNull( o.publicVar1 );
