@@ -108,6 +108,16 @@
 			<source-path path-element="${src.dir}" />
 			<include-sources dir="${src.dir}" includes="*" />
 		</compc>
+		
+		<!-- Add a FAT SWC with debug information -->
+		<compc output="${bin.dir}/${library.name}-debug.swc"
+			debug="true" optimize="false">
+			
+			<load-config filename="${FLEX_HOME}/frameworks/air-config.xml" />
+			
+			<source-path path-element="${src.dir}" />
+			<include-sources dir="${src.dir}" includes="*" />
+		</compc>
 	</target>
 	
 	<target name="docs" depends="init" description="Generate ASDoc documentation">
