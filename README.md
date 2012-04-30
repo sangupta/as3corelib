@@ -1,5 +1,13 @@
 An ActionScript 3 Library that contains a number of classes and utilities for working with ActionScript? 3. These include classes for MD5 and SHA 1 hashing, Image encoders, and JSON serialization as well as general String, Number and Date APIs.
 
+Why Forked?
+-----------
+
+The projects was forked from the original project at https://github.com/mikechambers/as3corelib because the original project is now dormant and has not been maintained for over an year now. Thus, this fork of mine which aims to fix all reported issues and keep upgrading the library with reported issues/enhancements/ideas.
+
+License
+-------
+
 Code is released under a BSD License:
 http://www.opensource.org/licenses/bsd-license.php
 
