@@ -362,7 +362,7 @@ package com.adobe.net
 				uri.query = query;
 				uri.fragment = fragment;
 				
-				var actualURI:String = uri.toDisplayString();
+				actualURI = uri.toDisplayString();
 				assertEquals("URI.toString() should be the same.", actualURI, inURI);
 			}
 			else
