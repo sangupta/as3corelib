@@ -264,5 +264,23 @@ package com.adobe.utils
 			
 			return string;
 		}
+		
+		/**
+		 *	Returns true if and only if the input string contains the specified sequence value.
+		 *
+		 *	@param input The string in which we are searching for the sequence
+		 *	@param sequence The string to search for
+		 *
+		 *	@returns true if input contains sequence, false otherwise
+		 *
+		 * 	@langversion ActionScript 3.0
+		 *	@playerversion Flash 9.0
+		 *	@tiptext
+		 */
+		public static function contains(input:String, sequence:String):Boolean
+		{
+			return input != null && input.indexOf(sequence) >= 0;
+		}
+
 	}
 }
