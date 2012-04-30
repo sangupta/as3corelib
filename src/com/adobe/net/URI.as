@@ -67,7 +67,7 @@ package com.adobe.net
 	 * documation on protected members and protected fuctions.</p>
 	 * 
 	 * @langversion ActionScript 3.0
-	 * @playerversion Flash 9.0 
+	 * @playerversion Flash 9.0
 	 */
 	public class URI
 	{	
@@ -644,20 +644,19 @@ package com.adobe.net
 		 * @return true if this URI represents a directory resource, false
 		 * if this URI represents a file resource.
 		 */
-		public function isDirectory() : Boolean
-		{
-			if (_path.length == 0)
+		public function isDirectory() : Boolean {
+			if (_path.length == 0) {
 				return false;
+			}
 		
-			return (_path.charAt(path.length - 1) == '/');
+			return (_path.charAt(_path.length - 1) == '/');
 		}
 		
 		
 		/**
 		 * Is this URI a hierarchical URI? URI's can be  
 		 */
-		public function isHierarchical() : Boolean
-		{ 
+		public function isHierarchical() : Boolean { 
 			return hierState;
 		}
 				
