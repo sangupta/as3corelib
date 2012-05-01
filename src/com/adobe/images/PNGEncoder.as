@@ -31,15 +31,15 @@
 */
 package com.adobe.images
 {
-	import flash.geom.*;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
+	import flash.geom.*;
 	import flash.utils.ByteArray;
 
 	/**
 	 * Class that converts BitmapData into a valid PNG
 	 */	
-	public class PNGEncoder
+	public class PNGEncoder implements ImageEncoder
 	{
 		/**
 		 * Created a PNG image from the specified BitmapData
@@ -50,7 +50,7 @@ package com.adobe.images
 		 * @playerversion Flash 9.0
 		 * @tiptext
 		 */			
-	    public static function encode(img:BitmapData):ByteArray {
+	    public function encode(img:BitmapData):ByteArray {
 	        // Create output byte array
 	        var png:ByteArray = new ByteArray();
 	        // Write PNG signature

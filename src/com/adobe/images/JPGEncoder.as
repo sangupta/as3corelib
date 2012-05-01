@@ -31,14 +31,14 @@
 */
 package com.adobe.images
 {
-	import flash.geom.*;
 	import flash.display.*;
+	import flash.geom.*;
 	import flash.utils.*;
 	
 	/**
 	 * Class that converts BitmapData into a valid JPEG
 	 */		
-	public class JPGEncoder
+	public class JPGEncoder implements ImageEncoder
 	{
 
 		// Static table initialization
