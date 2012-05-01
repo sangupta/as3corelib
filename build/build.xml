@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="as3corelib" basedir="../" default="compile">
+<project name="as3corelib" basedir="../" default="install">
 
 	<!-- ============================== -->
 	<!--  Configuration -->
