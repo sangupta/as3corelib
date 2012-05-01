@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<overviews>
+	<packages>
+		<package name="com.adobe.air.crypto">
+			<shortDescription>
+				Contains implementation for Encryption key generator to be used with SQLite database (AIR only).
+			</shortDescription>
+			<description>
+				Contains implementation for Encryption key generator to be used with SQLite database (AIR only).
+			</description>
+		</package>
+		<package name="com.adobe.air.filesystem">
+			<shortDescription>
+				Utility classes to work and monitor changes to volumes/files.
+			</shortDescription>
+			<description>
+				Utility classes to work and monitor changes to volumes/files.
+			</description>
+		</package>
+		<package name="com.adobe.air.filesystem.events">
+			<shortDescription>
+				Event dispatched by FileMonitor/VolumeMonitor when something changes.
+			</shortDescription>
+			<description>
+				Event dispatched by FileMonitor/VolumeMonitor when something changes.
+			</description>
+		</package>
+		<package name="com.adobe.air.filesystem.logging">
+			<shortDescription>
+				File based target to redirect all logging messages to disk.
+			</shortDescription>
+			<description>
+				File based target to redirect all logging messages to disk.
+			</description>
+		</package>
+		<package name="com.adobe.crypto">
+			<shortDescription>
+				Contains implementations to common cryptographic functions such as MD5, HMAC etc.
+			</shortDescription>
+			<description>
+				Contains implementations to common cryptographic functions such as MD5, HMAC etc.
+			</description>
+		</package>
+		<package name="com.adobe.errors">
+			<shortDescription>
+				Contains errors specific to this library that are thrown during various operations. 
+			</shortDescription>
+			<description>
+				Contains errors specific to this library that are thrown during various operations.
+			</description>
+		</package>
+		<package name="com.adobe.utils">
+			<shortDescription>
+				Contains common utility functions related to Arrays, String, Date, Integers, Numbers and XML.
+			</shortDescription>
+			<description>
+				Contains common utility functions related to Arrays, String, Date, Integers, Numbers and XML.
+			</description>
+		</package>
+	</packages>
+</overviews>

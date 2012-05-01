@@ -5,9 +5,12 @@
 	<!--  Configuration -->
 	<!-- ============================== -->
 
+	<property name="docs.FLEX_HOME" value="C:/Program Files (x86)/Adobe/Adobe Flash Builder 4.6/sdks/4.6.0"/>
 	<property name="env.FLEX_HOME" value="E:/FlexSDK/4.1.0.16076A_AIR_2.5"/>
 	
 	<fail unless="env.FLEX_HOME" message="FLEX_HOME needs to be defined as an environment variable or in the Ant build." />
+	
+	<fail unless="docs.FLEX_HOME" message="FLEX_HOME (documentation) needs to be defined as an environment variable or in the Ant build." />
 
 	<!-- Configuration -->
 	<property file="${basedir}/build/build.properties" />
@@ -129,19 +132,22 @@
 	</target>
 	
 	<target name="docs" depends="init" description="Generate ASDoc documentation">
-		<java jar="${FLEX_HOME}/lib/asdoc.jar" 
-			dir="${FLEX_HOME}/frameworks" fork="true" failonerror="true">
+		<java jar="${docs.FLEX_HOME}/lib/asdoc.jar" 
+			dir="${docs.FLEX_HOME}/frameworks" fork="true" failonerror="true">
 			
 			<arg line="-load-config '${FLEX_HOME}/frameworks/air-config.xml'" />
 			
 			<!-- Place the documentation in the "docs" directory -->
 			<arg line="-output ${docs.dir}" />
 			
+			<!-- Add the package definitions -->
+			<arg line="-package-description-file ${build.dir}/packageDescription.xml" />
+			
 			<!-- Specify the main source path as "src" -->
 			<arg line="-source-path ${src.dir}" />
 			
 			<!-- Document all of the classes in the "src" tree -->
-			<arg line="-doc-sources ${src.dir} " />
+			<arg line="-doc-sources ${src.dir}" />
 			
 			<!-- Include the library name in the window title -->
 			<arg line="-window-title 'Adobe ActionScript 3.0 Core Library - ${library.name}' "/>
@@ -157,6 +163,7 @@
 	
 	<target name="install" description="Compile, test and release the library">
 		<antcall target="compile" />
+		<antcall target="docs" />
 		<antcall target="test" />
 		<antcall target="release" />
 	</target>
